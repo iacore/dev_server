@@ -1,4 +1,5 @@
 import type { DirMetadata } from "./types.ts";
+import { toFileUrl } from "https://deno.land/std@0.224.0/path/mod.ts";
 
 import {
   Application,
@@ -12,7 +13,8 @@ import {
   NotFoundException,
   path,
 } from "./deps.ts";
-const { readFile, emit, cwd, stat, args, exit, writeTextFile } = Deno;
+import { transpile } from "jsr:@deno/emit";
+const { readFile, cwd, stat, args, exit, writeTextFile } = Deno;
 const { join } = path;
 const { exists, ensureDir } = fs;
 const { parse } = flags;
@@ -137,16 +139,16 @@ app
   });
 
 async function transform(rootName: string) {
-  console.log(rootName);
-  const result = await emit(
-    rootName,
+  const url = toFileUrl(rootName)
+  const result = await transpile(
+    url,
     {
       bundle: "module",
       check: true,
       compilerOptions,
     },
   );
-  return result.files["deno:///bundle.js"];
+  return result.get(url.href);
 }
 
 function decode(b: Uint8Array) {
