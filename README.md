@@ -1,47 +1,17 @@
-# Dev Server
+# Typescript Dev Server
 
-Feel free to import TypeScript files in the script tag!
-
-[![tag](https://img.shields.io/github/tag/zhmushan/dev_server.svg)](https://github.com/zhmushan/dev_server)
-[![Build Status](https://github.com/zhmushan/dev_server/workflows/ci/badge.svg?branch=master)](https://github.com/zhmushan/dev_server/actions)
-[![license](https://img.shields.io/github/license/zhmushan/dev_server.svg)](https://github.com/zhmushan/dev_server)
-[![tag](https://img.shields.io/badge/deno->=1.0.0-green.svg)](https://github.com/denoland/deno)
+This is like `python -m http.server`, except it transpiles Typescript files to ESM.
 
 ## Getting Started
 
-Without install:
+I mean just clone this repo and run `deno install -g --allow-read --allow-write --allow-net --allow-env mod.ts` to install this program.
+
+Create project from template (check under template/)
 
 ```sh
-deno run -A --unstable https://deno.land/x/dev_server/mod.ts --template hello_world
-```
-
-Install & Run it:
-
-```sh
-deno install -A --unstable https://deno.land/x/dev_server/mod.ts
-
-dev_server my_app --template hello_world
-```
-
-Print help info:
-
-```sh
-dev_server -h
-```
-
-Upgrade to the latest version:
-
-```sh
-deno cache --reload --unstable https://deno.land/x/dev_server/mod.ts
-```
-
-Create project from template:
-
-```sh
-# Check from https://deno.land/x/dev_server/template/
-dev_server my_app --template hello_world
-dev_server my_app --template react
-dev_server my_app --template angular
+ts_dev_server my_app --template hello_world
+ts_dev_server my_app --template react
+ts_dev_server my_app --template angular
 ```
 
 ## Quick Test
